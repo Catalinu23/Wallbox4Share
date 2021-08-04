@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Wallbox4Share</string>
     <string name="no_account"><u>Sign Up!</u></string>
-    <string name="title_activity_map">Map</string>
 </resources>
