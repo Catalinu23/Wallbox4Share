@@ -12,21 +12,14 @@
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|center_vertical"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="348dp"
         android:background="@drawable/blue_rounded_button"
         app:cardBackgroundColor="@color/light_blue"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textViewCategory1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/blue_rounded_button"
-            android:gravity="center"
-            android:text="Account Details"
-            android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -93,5 +86,31 @@
             android:text="Favourites"
             android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textViewCategory1"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="310dp"
+        android:background="@drawable/blue_rounded_button"
+        android:gravity="center"
+        android:text="Account Details"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="152dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/textViewCategory1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
