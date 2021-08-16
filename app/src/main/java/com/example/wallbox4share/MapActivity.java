@@ -9,11 +9,14 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -37,6 +40,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     private GoogleMap mMap;
     private Geocoder geocoder;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,19 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
         supportMapFragment.getMapAsync(this);
         geocoder = new Geocoder(this);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        ImageButton pfpButton = findViewById(R.id.userProfilePictureButton);
+        pfpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openUserMenu();
+            }
+        });
+    }
+
+    private void openUserMenu() {
+        Intent intent = new Intent(this, UserMenuCategoriesActivity.class);
+        startActivity(intent);
     }
 
     public void zoomToUserLocation() {
