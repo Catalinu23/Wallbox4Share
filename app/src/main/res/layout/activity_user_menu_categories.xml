@@ -41,6 +41,7 @@
             android:background="@drawable/blue_rounded_button"
             android:gravity="center"
             android:text="My Car"
+            android:textColor="@color/white"
             android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
@@ -63,6 +64,7 @@
             android:background="@drawable/blue_rounded_button"
             android:gravity="center"
             android:text="My Wallboxes"
+            android:textColor="@color/white"
             android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
@@ -84,6 +86,7 @@
             android:background="@drawable/blue_rounded_button"
             android:gravity="center"
             android:text="Favourites"
+            android:textColor="@color/white"
             android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
@@ -95,6 +98,7 @@
         android:background="@drawable/blue_rounded_button"
         android:gravity="center"
         android:text="Account Details"
+        android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +109,6 @@
         android:layout_width="152dp"
         android:layout_height="147dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/textViewCategory1"
         app:layout_constraintEnd_toEndOf="parent"
