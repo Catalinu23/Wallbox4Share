@@ -149,7 +149,7 @@
         android:id="@+id/accountDetailsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         android:text="Account Details"
         android:textColor="@color/purple_500"
         android:textSize="36sp"
@@ -159,14 +159,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accountDetailsTextView"
-        app:srcCompat="@drawable/blank_image"
-        tools:srcCompat="@drawable/blank_image" />
+        app:srcCompat="@drawable/profile_icon"
+        tools:srcCompat="@drawable/profile_icon" />
 
     <Space
         android:id="@+id/space"
