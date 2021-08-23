@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wallbox4Share">
-        <activity android:name=".MyCarActivity"></activity>
+        <activity android:name=".AccountDetailsActivity"></activity>
+        <activity android:name=".MyCarActivity" />
         <activity android:name=".UserMenuCategoriesActivity" />
         <activity android:name=".MapActivity" />
         <!--

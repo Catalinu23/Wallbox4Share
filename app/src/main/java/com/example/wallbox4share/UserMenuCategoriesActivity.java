@@ -25,6 +25,18 @@ public class UserMenuCategoriesActivity extends AppCompatActivity {
                 openMyCarActivity();
             }
         });
+
+        accountDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAccountDetailsActivity();
+            }
+        });
+    }
+
+    private void openAccountDetailsActivity() {
+        Intent intent = new Intent(this, AccountDetailsActivity.class);
+        startActivity(intent);
     }
 
     private void openMyCarActivity() {

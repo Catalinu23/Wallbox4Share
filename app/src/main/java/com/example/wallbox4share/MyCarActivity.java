@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,8 +14,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +30,7 @@ import static java.sql.DriverManager.println;
 public class MyCarActivity extends AppCompatActivity {
 
     ArrayList<String> carsArray = new ArrayList<String>();
+    String chosenCar="Tesla Model S";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class MyCarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openDialog(mContext);
+                carModelText.setText(chosenCar);
             }
         });
     }
@@ -72,6 +77,13 @@ public class MyCarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+            }
+        });
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                chosenCar = spinner.getSelectedItem().toString();
+
             }
         });
         alertDialog.show();
