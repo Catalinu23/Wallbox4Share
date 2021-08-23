@@ -14,10 +14,10 @@ public class UserMenuCategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_menu_categories);
 
-        TextView accountDetailsButton = findViewById(R.id.textViewCategory1);
-        TextView myCarButton = findViewById(R.id.textViewCategory2);
-        TextView myWalloxesButton = findViewById(R.id.textViewCategory3);
-        TextView favouritesButton = findViewById(R.id.textViewCategory4);
+        TextView accountDetailsButton = findViewById(R.id.buttonCategory1);
+        TextView myCarButton = findViewById(R.id.buttonCategory2);
+        TextView myWalloxesButton = findViewById(R.id.buttonCategory3);
+        TextView favouritesButton = findViewById(R.id.buttonCategory4);
 
         myCarButton.setOnClickListener(new View.OnClickListener() {
             @Override

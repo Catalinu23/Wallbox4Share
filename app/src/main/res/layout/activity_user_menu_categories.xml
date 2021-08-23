@@ -7,113 +7,74 @@
     android:background="@color/light_blue"
     tools:context=".UserMenuCategoriesActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center_vertical"
-        android:layout_marginTop="348dp"
-        android:background="@drawable/blue_rounded_button"
-        app:cardBackgroundColor="@color/light_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center_vertical"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/blue_rounded_button"
-        app:cardBackgroundColor="@color/light_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-        <TextView
-            android:id="@+id/textViewCategory2"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/blue_rounded_button"
-            android:gravity="center"
-            android:text="My Car"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center_vertical"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/blue_rounded_button"
-        app:cardBackgroundColor="@color/light_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
-
-        <TextView
-            android:id="@+id/textViewCategory3"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/blue_rounded_button"
-            android:gravity="center"
-            android:text="My Wallboxes"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center_vertical"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/blue_rounded_button"
-        app:cardBackgroundColor="@color/light_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3">
-
-        <TextView
-            android:id="@+id/textViewCategory4"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/blue_rounded_button"
-            android:gravity="center"
-            android:text="Favourites"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textViewCategory1"
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="310dp"
-        android:background="@drawable/blue_rounded_button"
-        android:gravity="center"
-        android:text="Account Details"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="152dp"
         android:layout_height="147dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/textViewCategory1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/buttonCategory1"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/blue_rounded_button"
+        android:text="Account Details"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+
+    <Button
+        android:id="@+id/buttonCategory2"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/blue_rounded_button"
+        android:text="My Car"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCategory1" />
+
+    <Button
+        android:id="@+id/buttonCategory3"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/blue_rounded_button"
+        android:text="My Wallboxes"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCategory2" />
+
+    <Button
+        android:id="@+id/buttonCategory4"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/blue_rounded_button"
+        android:text="Favourites"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCategory3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

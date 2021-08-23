@@ -17,7 +17,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ActionBar aBar = getSupportActionBar();
-        aBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#005cb2")));
 
         Button button = findViewById(R.id.goToTutorialButton);
         Button signInButton = findViewById(R.id.SignInButton);
