@@ -45,8 +45,8 @@ public class MyCarActivity extends AppCompatActivity {
         ArrayList teslaModelS = new ArrayList();
         teslaModelS.add("Tesla Charger");
         teslaModelS.add("Tesla Super-Charger");
-
         ListView compatibleWallboxesListView = findViewById(R.id.compatibleWallboxesListView);
+
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.custom_list_view_layout, teslaModelS);
         compatibleWallboxesListView.setAdapter(arrayAdapter);
 
