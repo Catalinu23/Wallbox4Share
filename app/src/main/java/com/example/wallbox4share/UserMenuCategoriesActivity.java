@@ -13,6 +13,7 @@ public class UserMenuCategoriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_menu_categories);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView accountDetailsButton = findViewById(R.id.buttonCategory1);
         TextView myCarButton = findViewById(R.id.buttonCategory2);

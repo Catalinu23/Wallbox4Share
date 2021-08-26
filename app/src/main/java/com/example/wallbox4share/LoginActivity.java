@@ -10,6 +10,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -17,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ActionBar aBar = getSupportActionBar();
+
 
         Button button = findViewById(R.id.goToTutorialButton);
         Button signInButton = findViewById(R.id.SignInButton);
