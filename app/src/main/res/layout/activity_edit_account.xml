@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@color/white"
     tools:context=".EditAccountActivity">
 
     <Button
         android:id="@+id/saveDetailsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:background="@drawable/blue_rounded_button"
+        android:layout_marginBottom="256dp"
+        android:background="@drawable/light_blue_rounded_button"
         android:text="Save"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -49,12 +49,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:text="Last Name:"
         android:textColor="@color/purple_500"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/space"
-        app:layout_constraintTop_toBottomOf="@+id/editDetailsTextView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Space
         android:id="@+id/space"
@@ -70,22 +70,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:text="First Name:"
         android:textColor="@color/purple_500"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDetailsTextView" />
-
-    <TextView
-        android:id="@+id/editDetailsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="Edit Details"
-        android:textColor="@color/purple_500"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,8 +85,8 @@
         android:ems="10"
         android:hint="First Name"
         android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColor="@color/dark_grey"
+        android:textColorHint="@color/dark_grey"
         app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintStart_toStartOf="@+id/firstNameTextView2"
         app:layout_constraintTop_toBottomOf="@+id/firstNameTextView2" />
@@ -112,8 +100,8 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_grey"
         app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,8 +117,8 @@
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/space"
         app:layout_constraintTop_toBottomOf="@+id/lastNameTextView2" />
@@ -145,8 +133,8 @@
         android:ems="10"
         android:hint="Phone Number"
         android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/space"

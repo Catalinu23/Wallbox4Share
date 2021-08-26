@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@color/white"
     tools:context=".AccountDetailsActivity">
 
     <Button
         android:id="@+id/editDetailsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/blue_rounded_button"
+        android:layout_width="141dp"
+        android:layout_height="41dp"
+        android:background="@drawable/light_blue_rounded_button"
         android:text="Edit Details"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -27,8 +27,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="Wallbox"
-        android:textColor="@color/white"
-        android:textColorLink="@color/white"
+        android:textColor="@color/black"
+        android:textColorLink="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstNameTextView" />
@@ -40,7 +40,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="Wallbox4Share"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorLink="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="example@gmail.com"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorLink="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="0742999999"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorLink="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/space"
@@ -79,7 +79,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="Sharing"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorLink="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/space"
@@ -145,26 +145,14 @@
         app:layout_constraintStart_toEndOf="@+id/space"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <TextView
-        android:id="@+id/accountDetailsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Account Details"
-        android:textColor="@color/purple_500"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountDetailsTextView"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile_icon"
         tools:srcCompat="@drawable/profile_icon" />
 

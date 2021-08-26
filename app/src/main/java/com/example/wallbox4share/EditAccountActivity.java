@@ -13,6 +13,8 @@ public class EditAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
+        getSupportActionBar().setTitle("Edit Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button saveDetailsButton = findViewById(R.id.saveDetailsButton);
         saveDetailsButton.setOnClickListener(new View.OnClickListener() {

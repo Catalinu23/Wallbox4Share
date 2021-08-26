@@ -36,6 +36,8 @@ public class MyCarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_car);
+        getSupportActionBar().setTitle("My Car");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         carsArray.add("Tesla Model S");
         carsArray.add("Tesla Model 3");
