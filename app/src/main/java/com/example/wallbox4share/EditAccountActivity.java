@@ -29,5 +29,12 @@ public class EditAccountActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AccountDetailsActivity.class);
         startActivity(intent);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        openAccountDetailsActivity();
+    }
+
+
 
 }

@@ -61,9 +61,9 @@
 
     <Button
         android:id="@+id/changeCarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/blue_rounded_button"
+        android:layout_width="146dp"
+        android:layout_height="41dp"
+        android:background="@drawable/light_blue_rounded_button"
         android:text="Change Car"
         android:textColor="@color/white"
         android:textSize="18sp"

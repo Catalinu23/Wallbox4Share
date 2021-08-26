@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -89,6 +90,17 @@ public class MyCarActivity extends AppCompatActivity {
             }
         });
         alertDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        openUserMenu();
+    }
+
+    private void openUserMenu() {
+        Intent intent = new Intent(this, UserMenuCategoriesActivity.class);
+        startActivity(intent);
     }
 
 }

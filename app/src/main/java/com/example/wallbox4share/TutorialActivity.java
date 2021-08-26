@@ -17,6 +17,7 @@ public class TutorialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tutorial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         ViewPager viewPager = findViewById(R.id.ViewPager);
         TutorialSlideshowAdapter adapter = new TutorialSlideshowAdapter(this);
         viewPager.setAdapter(adapter);

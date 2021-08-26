@@ -58,4 +58,15 @@ public class UserMenuCategoriesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyWallboxesActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        openMapActivity();
+    }
+
+    private void openMapActivity() {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
 }
