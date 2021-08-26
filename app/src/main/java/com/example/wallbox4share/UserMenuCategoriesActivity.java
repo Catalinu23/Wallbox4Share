@@ -20,7 +20,7 @@ public class UserMenuCategoriesActivity extends AppCompatActivity {
         TextView accountDetailsButton = findViewById(R.id.buttonCategory1);
         TextView myCarButton = findViewById(R.id.buttonCategory2);
         TextView myWallBoxesButton = findViewById(R.id.buttonCategory3);
-        TextView favouritesButton = findViewById(R.id.buttonCategory4);
+        TextView settingsButton = findViewById(R.id.buttonCategory4);
 
         myCarButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +42,13 @@ public class UserMenuCategoriesActivity extends AppCompatActivity {
                 openMyWallboxesActivity();
             }
         });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSettingsActivity();
+            }
+        });
     }
 
     private void openAccountDetailsActivity() {
@@ -56,6 +63,11 @@ public class UserMenuCategoriesActivity extends AppCompatActivity {
 
     private void openMyWallboxesActivity() {
         Intent intent = new Intent(this, MyWallboxesActivity.class);
+        startActivity(intent);
+    }
+
+    private void openSettingsActivity() {
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 

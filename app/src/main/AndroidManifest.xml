@@ -19,15 +19,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wallbox4Share">
-        <activity android:name=".MyWallboxesActivity"
-            android:parentActivityName=".UserMenuCategoriesActivity"/>
-        <activity android:name=".EditAccountActivity"
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".UserMenuCategoriesActivity" />
+        <activity
+            android:name=".MyWallboxesActivity"
+            android:parentActivityName=".UserMenuCategoriesActivity" />
+        <activity
+            android:name=".EditAccountActivity"
             android:parentActivityName=".AccountDetailsActivity" />
-        <activity android:name=".AccountDetailsActivity"
+        <activity
+            android:name=".AccountDetailsActivity"
             android:parentActivityName=".UserMenuCategoriesActivity" />
-        <activity android:name=".MyCarActivity"
+        <activity
+            android:name=".MyCarActivity"
             android:parentActivityName=".UserMenuCategoriesActivity" />
-        <activity android:name=".UserMenuCategoriesActivity"
+        <activity
+            android:name=".UserMenuCategoriesActivity"
             android:parentActivityName=".MapActivity" />
         <activity android:name=".MapActivity" />
         <!--
