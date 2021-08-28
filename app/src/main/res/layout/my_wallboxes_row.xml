@@ -20,7 +20,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="380dp"
-        android:layout_height="116dp"
+        android:layout_height="105dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,7 +28,7 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="380dp"
-            android:layout_height="116dp"
+            android:layout_height="105dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -48,10 +48,10 @@
 
         <TextView
             android:id="@+id/wallbox_description_txt"
-            android:layout_width="342dp"
-            android:layout_height="70dp"
+            android:layout_width="370dp"
+            android:layout_height="64dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="3dp"
             android:text="Description"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
