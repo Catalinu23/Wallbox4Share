@@ -5,11 +5,17 @@
     <string-array name="my_wallboxes">
         <item>Tesla Super-Charger</item>
         <item>Tesla Charger</item>
+        <item>Tesla Charger</item>
+        <item>Tesla Charger</item>
+        <item>Tesla Charger</item>
     </string-array>
 
     <string-array name="description">
         <item>a cool description\n
         available at any time</item>
+        <item>something else</item>
+        <item>something else</item>
+        <item>something else</item>
         <item>something else</item>
     </string-array>
 
