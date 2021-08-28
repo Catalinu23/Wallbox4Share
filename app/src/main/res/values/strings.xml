@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">Wallbox4Share</string>
     <string name="no_account"><u>Sign Up!</u></string>
+    
+    <string-array name="my_wallboxes">
+        <item>Tesla Super-Charger</item>
+        <item>Tesla Charger</item>
+        <item>Another Charger</item>
+        <item>Wallbox</item>
+        <item>Another Wallbox</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>a cool description\navailable at any time</item>
+        <item>A description of this charger will be available soon. just wait.</item>
+        <item>something else</item>
+        <item>something else</item>
+        <item>something else</item>
+    </string-array>
+
+
 </resources>
