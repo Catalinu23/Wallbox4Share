@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wallbox4Share">
         <activity
+            android:name=".SignUpActivity"
+            android:parentActivityName=".LoginActivity"/>
+        <activity
             android:name=".SettingsActivity"
             android:parentActivityName=".UserMenuCategoriesActivity" />
         <activity
