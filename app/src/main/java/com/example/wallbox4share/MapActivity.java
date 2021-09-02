@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -40,8 +41,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
 
@@ -111,23 +119,30 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void displayWallboxes() {
-        for(int id=1; id<=10; id++) {
-            String url = "http://10.0.2.2:8080/wallbox/" + id + "/";
-            //Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
-            RequestQueue queue = Volley.newRequestQueue(this);
-            Gson gson = new Gson();
-            JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                    (Response.Listener<JSONObject>) response -> {
-                        Wallbox wallbox = gson.fromJson(response.toString(), Wallbox.class);
-                        LatLng latLng = new LatLng(wallbox.getLatitude(), wallbox.getLongitude());
-                        mMap.addMarker(new MarkerOptions().position(latLng).title(wallbox.getOwner_name() + "'s Wallbox"));
-                        //Toast.makeText(this, "entered succesfully!", Toast.LENGTH_SHORT).show();
-                    }, (Response.ErrorListener) error -> {
-                //Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
-            });
+        String url = "http://10.0.2.2:8080/wallboxes/";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Wallbox>>() {}.getType();
 
-            queue.add(stringRequest);
-        }
+        JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                (Response.Listener<JSONArray>) response -> {
+                    //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+                    List<Wallbox> wallboxes = gson.fromJson(response.toString(), type);
+                    for(Wallbox wallbox: wallboxes) {
+                        try {
+                            LatLng latLng = new LatLng(wallbox.getLatitude(), wallbox.getLongitude());
+                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(wallbox.getOwner_name() + "'s Wallbox");
+                            mMap.addMarker(markerOptions);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }, (Response.ErrorListener) error -> {
+            Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+        queue.add(stringRequest);
     }
 
 

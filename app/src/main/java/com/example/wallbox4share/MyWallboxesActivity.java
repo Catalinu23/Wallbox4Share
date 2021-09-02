@@ -6,6 +6,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MyWallboxesActivity extends AppCompatActivity {
 
@@ -26,6 +39,40 @@ public class MyWallboxesActivity extends AppCompatActivity {
         MyWallboxesAdapter myWallboxesAdapter = new MyWallboxesAdapter(this, s1, s2);
         recyclerView.setAdapter(myWallboxesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Button addWallboxButton = findViewById(R.id.addWallboxButton);
+
+
+        String url = "http://10.0.2.2:8080/wallboxes/add";
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Gson gson = new Gson();
+
+        Wallbox wallbox = new Wallbox("Owner", 123d, 50d);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("owner_name", wallbox.getOwner_name());
+            jsonObject.put("latitude", wallbox.getLongitude());
+            jsonObject.put("longitude", wallbox.getLongitude());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        addWallboxButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                        (Response.Listener<JSONObject>) response -> {
+
+                            //Toast.makeText(this, "entered succesfully!", Toast.LENGTH_SHORT).show();
+                        }, (Response.ErrorListener) error -> {
+                    Toast.makeText(MyWallboxesActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                });
+
+                queue.add(stringRequest);
+            }
+        });
+
     }
 
     @Override

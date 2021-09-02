@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -43,8 +44,8 @@ public class LoginActivity extends AppCompatActivity {
 
         String url = "http://10.0.2.2:8080/user/1";
 
-        EditText editTextEmailAddress = findViewById(R.id.editTextEmailAddress);
-        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        EditText editTextEmailAddress = findViewById(R.id.editTextTextEmailAddress);
+        EditText editTextPassword = findViewById(R.id.editTextTextPassword);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         Gson gson = new Gson();
@@ -62,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.goToTutorialButton);
         Button signInButton = findViewById(R.id.SignInButton);
+        TextView goToSignUp = findViewById(R.id.noAccountTextView2);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +78,22 @@ public class LoginActivity extends AppCompatActivity {
                 openMapActivity();
             }
         });
+
+        goToSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSignUpActivity();
+            }
+        });
     }
 
     private void openMapActivity() {
         Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
+
+    private void openSignUpActivity() {
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
 

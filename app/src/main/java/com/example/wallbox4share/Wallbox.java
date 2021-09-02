@@ -39,4 +39,10 @@ public class Wallbox implements Serializable {
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
+
+    public Wallbox(String owner_name, Double latitude, Double longitude) {
+        this.owner_name = owner_name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 }
