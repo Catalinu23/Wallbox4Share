@@ -49,11 +49,21 @@ public class MyWallboxesActivity extends AppCompatActivity {
         Gson gson = new Gson();
 
         Wallbox wallbox = new Wallbox("Owner", 123d, 50d);
-        JSONObject jsonObject = new JSONObject();
+        JSONObject wallboxObject = new JSONObject();
         try {
-            jsonObject.put("owner_name", wallbox.getOwner_name());
-            jsonObject.put("latitude", wallbox.getLongitude());
-            jsonObject.put("longitude", wallbox.getLongitude());
+            wallboxObject.put("owner_name", wallbox.getOwner_name());
+            wallboxObject.put("latitude", wallbox.getLongitude());
+            wallboxObject.put("longitude", wallbox.getLongitude());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONObject saveObject = new JSONObject();
+        try {
+            //TODO: get current user id
+            Long userId = 1L;
+            saveObject.put("userId", userId);
+            saveObject.put("wallbox", wallboxObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -61,7 +71,7 @@ public class MyWallboxesActivity extends AppCompatActivity {
         addWallboxButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, saveObject,
                         (Response.Listener<JSONObject>) response -> {
 
                             //Toast.makeText(this, "entered succesfully!", Toast.LENGTH_SHORT).show();
