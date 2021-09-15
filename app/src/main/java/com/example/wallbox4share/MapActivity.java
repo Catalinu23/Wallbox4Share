@@ -22,6 +22,12 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -34,6 +40,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
 
@@ -71,11 +87,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    private void openUserMenu() {
-        Intent intent = new Intent(this, UserMenuCategoriesActivity.class);
-        startActivity(intent);
-    }
-
     public void zoomToUserLocation() {
         @SuppressLint("MissingPermission") Task<Location> locationTask = fusedLocationProviderClient.getLastLocation();
         locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -103,8 +114,38 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         }
 
+        displayWallboxes();
         zoomToUserLocation();
     }
+
+    private void displayWallboxes() {
+        String url = "http://10.0.2.2:8080/wallboxes/";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Wallbox>>() {}.getType();
+
+        JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                (Response.Listener<JSONArray>) response -> {
+                    //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+                    List<Wallbox> wallboxes = gson.fromJson(response.toString(), type);
+                    for(Wallbox wallbox: wallboxes) {
+                        try {
+                            LatLng latLng = new LatLng(wallbox.getLatitude(), wallbox.getLongitude());
+                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(wallbox.getOwner_name() + "'s Wallbox");
+                            mMap.addMarker(markerOptions);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }, (Response.ErrorListener) error -> {
+            Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+        queue.add(stringRequest);
+    }
+
+
 
     private void enableUserLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
