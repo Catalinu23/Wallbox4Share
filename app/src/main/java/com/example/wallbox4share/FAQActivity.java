@@ -39,8 +39,8 @@ public class FAQActivity extends AppCompatActivity {
         versionsList.add(new Versions("Cat trebuie sa platesc pentru o incarcare plina?", "Pretul unei incarcari complete sau partiale poate fii stabilit cu detinatorul in sine."));
         versionsList.add(new Versions("Unde va putem contacta?", "Ne puteti contacta prin facebook , email si Instagram."));
         versionsList.add(new Versions("Cum sa accesez un wallbox?", "In ecranul principal , exista cerculete mici ce marcheaza locatiile unui wallbox , apasand pe ele , le puteti accesa."));
-        versionsList.add(new Versions("How?", "Description"));
-        versionsList.add(new Versions("How?", "Description"));
+        versionsList.add(new Versions("Pe ce sisteme pot gasi aplicatia?", "Description"));
+        versionsList.add(new Versions("Cate incercari gratuite primesc cand imi instalez aplicatia?", "Description"));
     }
 
     @Override

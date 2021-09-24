@@ -35,6 +35,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -131,7 +132,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     for(Wallbox wallbox: wallboxes) {
                         try {
                             LatLng latLng = new LatLng(wallbox.getLatitude(), wallbox.getLongitude());
-                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(wallbox.getOwner_name() + "'s Wallbox");
+                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(wallbox.getOwner_name() + "'s Wallbox").icon(BitmapDescriptorFactory.defaultMarker((float) 190.5));
                             mMap.addMarker(markerOptions);
                         } catch (Exception e) {
                             e.printStackTrace();
