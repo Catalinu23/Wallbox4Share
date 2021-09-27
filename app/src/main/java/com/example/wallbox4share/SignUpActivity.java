@@ -2,7 +2,9 @@ package com.example.wallbox4share;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.method.LinkMovementMethod;
@@ -55,6 +57,10 @@ public class SignUpActivity extends AppCompatActivity {
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(SignUpActivity.this, MapActivity.class);
+                startActivity(intent);
+
                 Editable username = editTextUsername.getText();
                 Editable email = editTextEmail.getText();
                 Editable password = editTextPassword.getText();
@@ -71,12 +77,23 @@ public class SignUpActivity extends AppCompatActivity {
                 JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
                         (Response.Listener<JSONObject>) response -> {
 
-                            Toast.makeText(SignUpActivity.this, "added succesfully!", Toast.LENGTH_SHORT).show();
+                            try {
+                                Toast.makeText(SignUpActivity.this, response.getString("id"), Toast.LENGTH_SHORT).show();
+                                Long id = Long.parseLong(response.getString("id"));
+                                SharedPreferences sharedPreferences = getSharedPreferences("id_preferences", Activity.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putLong("id", id);
+                                editor.apply();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }, (Response.ErrorListener) error -> {
-                    Toast.makeText(SignUpActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SignUpActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                 });
 
                 queue.add(stringRequest);
+
+
             }
         });
     }

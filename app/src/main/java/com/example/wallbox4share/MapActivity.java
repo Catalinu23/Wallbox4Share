@@ -19,7 +19,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -41,6 +43,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -50,7 +53,9 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
 
@@ -59,6 +64,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static final int REQUEST_CODE = 101;
     private GoogleMap mMap;
     private Geocoder geocoder;
+    private Map<Marker, Wallbox> markersMap = new HashMap<Marker, Wallbox>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,9 +123,28 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         displayWallboxes();
         zoomToUserLocation();
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MapActivity.this);
+                bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog);
+                TextView wallboxNameTextView = bottomSheetDialog.findViewById(R.id.wallboxNameTextView);
+                TextView ownerTextView = bottomSheetDialog.findViewById(R.id.ownerTextView);
+                wallboxNameTextView.setText(marker.getTitle());
+                ownerTextView.setText(markersMap.get(marker).getOwner_id().toString());
+
+                bottomSheetDialog.show();
+                return false;
+            }
+        });
     }
 
+
     private void displayWallboxes() {
+        //MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(34.024212, -118.496475)).title("Elon Musk's Wallbox");
+        //mMap.addMarker(markerOptions);
+        //mMap.addMarker(new MarkerOptions().position(new LatLng(123d, 40d)).title("User123's Wallbox"));
         String url = "http://10.0.2.2:8080/wallboxes/";
         RequestQueue queue = Volley.newRequestQueue(this);
         Gson gson = new Gson();
@@ -131,9 +156,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     List<Wallbox> wallboxes = gson.fromJson(response.toString(), type);
                     for(Wallbox wallbox: wallboxes) {
                         try {
-                            LatLng latLng = new LatLng(wallbox.getLatitude(), wallbox.getLongitude());
-                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(wallbox.getOwner_name() + "'s Wallbox").icon(BitmapDescriptorFactory.defaultMarker((float) 190.5));
-                            mMap.addMarker(markerOptions);
+                            Long id = wallbox.getOwner_id();
+                            String userUrl = "http://10.0.2.2:8080/user/" + id.toString();
+                            RequestQueue userQueue = Volley.newRequestQueue(this);
+                            Gson userGson = new Gson();
+                            JsonObjectRequest userStringRequest = new JsonObjectRequest(Request.Method.GET, userUrl, null,
+                                    (Response.Listener<JSONObject>) userResponse -> {
+                                        User user = gson.fromJson(userResponse.toString(), User.class);
+                                        LatLng latLng = new LatLng(wallbox.getLatitude(), wallbox.getLongitude());
+                                        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(user.getUsername() + "'s Wallbox").icon(BitmapDescriptorFactory.defaultMarker((float) 190.5));
+                                        Marker marker = mMap.addMarker(markerOptions);
+                                        markersMap.put(marker, wallbox);
+                                    }, (Response.ErrorListener) error -> {
+                                Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
+                            });
+
+                            userQueue.add(userStringRequest);
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

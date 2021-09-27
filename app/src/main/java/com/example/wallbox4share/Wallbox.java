@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Wallbox implements Serializable {
     private Long id;
-    private String owner_name;
+    private Long owner_id;
     private Double latitude;
     private Double longitude;
 
@@ -16,12 +16,12 @@ public class Wallbox implements Serializable {
         this.id = id;
     }
 
-    public String getOwner_name() {
-        return owner_name;
+    public Long getOwner_id() {
+        return owner_id;
     }
 
-    public void setOwner_name(String owner_name) {
-        this.owner_name = owner_name;
+    public void setOwner_id(Long owner_id) {
+        this.owner_id = owner_id;
     }
 
     public Double getLatitude() {
@@ -40,8 +40,8 @@ public class Wallbox implements Serializable {
         this.longitude = longitude;
     }
 
-    public Wallbox(String owner_name, Double latitude, Double longitude) {
-        this.owner_name = owner_name;
+    public Wallbox(Long owner_id, Double latitude, Double longitude) {
+        this.owner_id = owner_id;
         this.latitude = latitude;
         this.longitude = longitude;
     }

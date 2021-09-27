@@ -1,10 +1,16 @@
 package com.example.wallbox4share;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +21,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -42,17 +51,42 @@ public class MyWallboxesActivity extends AppCompatActivity {
 
         Button addWallboxButton = findViewById(R.id.addWallboxButton);
 
-
         String url = "http://10.0.2.2:8080/wallboxes/add";
 
         RequestQueue queue = Volley.newRequestQueue(this);
         Gson gson = new Gson();
 
-        Wallbox wallbox = new Wallbox("Owner", 123d, 50d);
+        SharedPreferences sharedPreferences = getSharedPreferences("id_preferences", Activity.MODE_PRIVATE);
+        Long id = sharedPreferences.getLong("id", -1L);
+
+        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location != null) {
+
+                            }
+                        }
+                    });
+            return;
+        }
+        
+
+
+        Wallbox wallbox = new Wallbox(id, 33D, -117D);
         JSONObject wallboxObject = new JSONObject();
         try {
-            wallboxObject.put("owner_name", wallbox.getOwner_name());
-            wallboxObject.put("latitude", wallbox.getLongitude());
+            wallboxObject.put("owner_id", wallbox.getOwner_id());
+            wallboxObject.put("latitude", wallbox.getLatitude());
             wallboxObject.put("longitude", wallbox.getLongitude());
         } catch (JSONException e) {
             e.printStackTrace();
