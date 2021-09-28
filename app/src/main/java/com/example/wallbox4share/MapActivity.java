@@ -242,6 +242,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        finishAffinity();
     }
 }

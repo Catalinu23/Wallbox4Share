@@ -137,4 +137,10 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TutorialActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }
