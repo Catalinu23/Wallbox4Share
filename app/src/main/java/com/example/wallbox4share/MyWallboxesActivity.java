@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +36,7 @@ public class MyWallboxesActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     String s1[], s2[];
-
+    Location userLocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,35 +62,16 @@ public class MyWallboxesActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("id_preferences", Activity.MODE_PRIVATE);
         Long id = sharedPreferences.getLong("id", -1L);
 
-        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            fusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            if (location != null) {
+        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-                            }
-                        }
-                    });
-            return;
-        }
-        
-
-
-        Wallbox wallbox = new Wallbox(id, 33D, -117D);
+        Wallbox wallbox = new Wallbox(id, location.getLatitude(), location.getLongitude(), "phone_number");
         JSONObject wallboxObject = new JSONObject();
         try {
             wallboxObject.put("owner_id", wallbox.getOwner_id());
             wallboxObject.put("latitude", wallbox.getLatitude());
             wallboxObject.put("longitude", wallbox.getLongitude());
+            wallboxObject.put("phone_number", wallbox.getPhone_number());
         } catch (JSONException e) {
             e.printStackTrace();
         }
