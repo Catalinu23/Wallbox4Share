@@ -8,6 +8,7 @@ public class Wallbox implements Serializable {
     private Double latitude;
     private Double longitude;
     private String phone_number;
+    private String description;
 
     public Long getId() {
         return id;
@@ -49,10 +50,19 @@ public class Wallbox implements Serializable {
         this.phone_number = phone_number;
     }
 
-    public Wallbox(Long owner_id, Double latitude, Double longitude, String phone_number) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Wallbox(Long owner_id, Double latitude, Double longitude, String phone_number, String description) {
         this.owner_id = owner_id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.phone_number = phone_number;
+        this.description = description;
     }
 }

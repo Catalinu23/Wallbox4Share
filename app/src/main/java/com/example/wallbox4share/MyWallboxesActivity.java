@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -37,6 +39,10 @@ public class MyWallboxesActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     String s1[], s2[];
     Location userLocation;
+    JSONObject saveObject;
+    Location location;
+    Long id;
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,41 +60,63 @@ public class MyWallboxesActivity extends AppCompatActivity {
 
         Button addWallboxButton = findViewById(R.id.addWallboxButton);
 
-        String url = "http://10.0.2.2:8080/wallboxes/add";
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        Gson gson = new Gson();
 
         SharedPreferences sharedPreferences = getSharedPreferences("id_preferences", Activity.MODE_PRIVATE);
-        Long id = sharedPreferences.getLong("id", -1L);
+        id = sharedPreferences.getLong("id", -1L);
 
         LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-        Wallbox wallbox = new Wallbox(id, location.getLatitude(), location.getLongitude(), "phone_number");
-        JSONObject wallboxObject = new JSONObject();
-        try {
-            wallboxObject.put("owner_id", wallbox.getOwner_id());
-            wallboxObject.put("latitude", wallbox.getLatitude());
-            wallboxObject.put("longitude", wallbox.getLongitude());
-            wallboxObject.put("phone_number", wallbox.getPhone_number());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-        JSONObject saveObject = new JSONObject();
-        try {
-            //TODO: get current user id
-            Long userId = 1L;
-            saveObject.put("userId", userId);
-            saveObject.put("wallbox", wallboxObject);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         addWallboxButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                showAlertDialog();
+
+            }
+        });
+
+    }
+
+    private void showAlertDialog() {
+        Dialog dialog = new Dialog(MyWallboxesActivity.this);
+        dialog.setContentView(R.layout.add_wallbox_dialog);
+        EditText editWallboxDescription = dialog.findViewById(R.id.editWallboxDescription);
+        EditText editPhoneNumber = dialog.findViewById(R.id.editPhone);
+        Button addButton = dialog.findViewById(R.id.addWallboxDialogButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://10.0.2.2:8080/wallboxes/add";
+
+                RequestQueue queue = Volley.newRequestQueue(MyWallboxesActivity.this);
+                Gson gson = new Gson();
+
+                Wallbox wallbox = new Wallbox(id, location.getLatitude(), location.getLongitude(),
+                        editPhoneNumber.getText().toString(), editWallboxDescription.getText().toString());
+                JSONObject wallboxObject = new JSONObject();
+                try {
+                    wallboxObject.put("owner_id", wallbox.getOwner_id());
+                    wallboxObject.put("latitude", wallbox.getLatitude());
+                    wallboxObject.put("longitude", wallbox.getLongitude());
+                    wallboxObject.put("phone_number", wallbox.getPhone_number());
+                    wallboxObject.put("description", wallbox.getDescription());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                saveObject = new JSONObject();
+                try {
+                    //TODO: get current user id
+                    saveObject.put("userId", wallbox.getOwner_id());
+                    saveObject.put("wallbox", wallboxObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, saveObject,
                         (Response.Listener<JSONObject>) response -> {
 
@@ -98,9 +126,10 @@ public class MyWallboxesActivity extends AppCompatActivity {
                 });
 
                 queue.add(stringRequest);
+                dialog.dismiss();
             }
         });
-
+        dialog.show();
     }
 
     @Override

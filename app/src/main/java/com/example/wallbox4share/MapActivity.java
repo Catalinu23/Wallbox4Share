@@ -65,6 +65,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private Geocoder geocoder;
     private Map<Marker, Wallbox> markersMap = new HashMap<Marker, Wallbox>();
+    User auxUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,8 +132,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog);
                 TextView wallboxNameTextView = bottomSheetDialog.findViewById(R.id.wallboxNameTextView);
                 TextView ownerTextView = bottomSheetDialog.findViewById(R.id.ownerTextView);
+                TextView phoneTextView = bottomSheetDialog.findViewById(R.id.phoneTextView);
                 wallboxNameTextView.setText(marker.getTitle());
-                ownerTextView.setText(markersMap.get(marker).getOwner_id().toString());
+                phoneTextView.setText(markersMap.get(marker).getPhone_number());
+                ownerTextView.setText((markersMap.get(marker).getDescription()));
+                //Toast.makeText(MapActivity.this, markersMap.get(marker).getPhone_number(), Toast.LENGTH_SHORT).show();
 
                 bottomSheetDialog.show();
                 return false;
@@ -211,6 +215,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    public User getUserById(Long id) {
+        String url = "http://10.0.2.2:8080/user/" + id.toString();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Gson gson = new Gson();
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                (Response.Listener<JSONObject>) response -> {
+                    User user = gson.fromJson(response.toString(), User.class);
+                    auxUser = user;
+                }, (Response.ErrorListener) error -> {
+            Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+        queue.add(stringRequest);
+        return auxUser;
     }
 
     @Override
