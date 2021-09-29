@@ -128,7 +128,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MapActivity.this);
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MapActivity.this, R.style.BottomSheetDialog);
                 bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog);
                 TextView wallboxNameTextView = bottomSheetDialog.findViewById(R.id.wallboxNameTextView);
                 TextView ownerTextView = bottomSheetDialog.findViewById(R.id.ownerTextView);
