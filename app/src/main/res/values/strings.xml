@@ -16,7 +16,7 @@ Terms and Conditions agreements are also known as Terms of Service or Terms of U
     <string-array name="my_wallboxes">
         <item>Tesla Super-Charger</item>
         <item>Tesla Charger</item>
-        <item>Another Charger</item>
+        <item>Wallbox Wall Connector</item>
     </string-array>
 
     <string-array name="description">
