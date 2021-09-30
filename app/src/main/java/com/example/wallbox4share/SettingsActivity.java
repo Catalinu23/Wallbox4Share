@@ -17,8 +17,16 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Settings");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        TextView TaCButton = findViewById(R.id.buttonTermsAndConditions);
         TextView faqButton = findViewById(R.id.buttonFAQ);
         TextView aboutUsButton = findViewById(R.id.buttonAboutUs);
+
+        TaCButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTermsAndConditionsActivity();
+            }
+        });
 
         faqButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +42,11 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void openTermsAndConditionsActivity(){
+        Intent intent = new Intent(this, TermsAndConditionsActivity.class);
+        startActivity(intent);
     }
 
     private void openFAQActivity(){

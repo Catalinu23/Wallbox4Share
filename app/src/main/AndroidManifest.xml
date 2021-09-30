@@ -20,6 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wallbox4Share"
         android:usesCleartextTraffic="true">
+        <activity android:name=".TermsAndConditionsActivity"
+            android:parentActivityName=".SettingsActivity" />
         <activity
             android:name=".FAQActivity"
             android:parentActivityName=".SettingsActivity" />
@@ -60,7 +62,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".TutorialActivity"
+        <activity
+            android:name=".TutorialActivity"
             android:parentActivityName=".LoginActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
