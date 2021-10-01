@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("id_preferences", Activity.MODE_PRIVATE);
         Long id = sharedPreferences.getLong("id", -1L);
 
-        Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show();
         if(id != -1) {
 
             String url = "http://10.0.2.2:8080/user/" + id.toString();
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                         User user = gson.fromJson(response.toString(), User.class);
                         editTextEmailAddress.setText(user.getUsername());
                         editTextPassword.setText(user.getPassword());
-                        signInButton.performClick();
+                        //signInButton.performClick();
 
                         //editTextEmailAddress.setText(user.getUsername());
                         //editTextPassword.setText(user.getPassword());

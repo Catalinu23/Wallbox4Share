@@ -10,7 +10,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 public class TutorialSlideshowAdapter extends PagerAdapter {
     private Context mContext;
-    private int[] imageIds = new int[] {R.drawable.blank_image, R.drawable.green_image};
+    private int[] imageIds = new int[] {R.drawable.dpit__ss1, R.drawable.dpit__ss2};
 
     TutorialSlideshowAdapter(Context context) {
         mContext = context;
