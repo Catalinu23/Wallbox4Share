@@ -36,11 +36,11 @@ public class FAQActivity extends AppCompatActivity {
 
     private void iniData() {
         versionsList = new ArrayList<>();
-        versionsList.add(new Versions("Cat trebuie sa platesc pentru o incarcare plina?", "Pretul unei incarcari complete sau partiale poate fii stabilit cu detinatorul in sine."));
-        versionsList.add(new Versions("Unde va putem contacta?", "Ne puteti contacta prin facebook , email si Instagram."));
-        versionsList.add(new Versions("Cum sa accesez un wallbox?", "In ecranul principal , exista cerculete mici ce marcheaza locatiile unui wallbox , apasand pe ele , le puteti accesa."));
-        versionsList.add(new Versions("Pe ce sisteme pot gasi aplicatia?", "Description"));
-        versionsList.add(new Versions("Cate incercari gratuite primesc cand imi instalez aplicatia?", "Description"));
+        versionsList.add(new Versions("How much do I have to pay for a full charge?", "The owner of the wallbox will decide the price."));
+        versionsList.add(new Versions("Where can I contact you?", "You can contact us on Facebook, Instagram or via email."));
+        versionsList.add(new Versions("How can I access a wallbox?", "Go to map and there you will find waypoints that indicate all the wallboxes. Just tap on them."));
+        versionsList.add(new Versions("Do you have a section for feedback?", "It will be available soon. Until then, don't hesitate to write us on emaill."));
+        versionsList.add(new Versions("How many chargings are available in the free version?", "You can charge your car 5 times for free."));
     }
 
     @Override
